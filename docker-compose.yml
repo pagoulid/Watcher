@@ -1,0 +1,52 @@
+version : '3'
+
+services:
+ 
+   
+  minio_server_2:
+    image: minio/minio
+    container_name: minio_server_2
+    volumes:
+      - ./docker/minio/server_2:/data
+    command: server --address ":9002"  --console-address ":9003" /data
+    ports:
+      - 9002:9002
+      - 9003:9003
+     
+    environment:
+      MINIO_ACCESS_KEY: minio2
+      MINIO_SECRET_KEY: minio456
+    networks:
+      private_network:
+        aliases: 
+          - minio_server_2
+        ipv4_address: 10.10.2.52
+
+  minio_server_1:
+    image: minio/minio
+    container_name: minio_server_1
+    volumes:
+      - ./docker/minio/server_1:/data
+    command: server --address ":9000"  --console-address ":9001" /data
+    ports:
+      - 9000:9000
+      - 9001:9001
+
+    environment:
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
+    networks:
+      private_network:
+        aliases:
+          - minio_server_1
+        ipv4_address: 10.10.2.51
+
+
+
+networks:
+  private_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+          - subnet: 10.10.2.0/24
