@@ -1,11 +1,17 @@
-Work environment: VirtualBox
-Working directory : Watcher
-VM IP : 192.168.1.10
+Work environment: 
+
+	VirtualBox
+Working directory : 
+	
+	Watcher
+VM IP : 
+	
+	-192.168.1.10
 Storage Urls:
   
-     - http://192.168.2.10:9000
+         - http://192.168.2.10:9000
         
-     -  http://192.168.2.10:9002
+        -  http://192.168.2.10:9002
 
 
 Installation of Python environment on work_dir:
